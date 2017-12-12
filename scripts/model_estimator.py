@@ -68,13 +68,19 @@ def model_estimator(params, train_data, train_labels, eval_data,
         config=config,
         params=params)
 
+    val_mon_list = [validation_monitor]
+    hooks = tf.monitors.replace_monitors_with_hooks(
+        val_mon_list,
+        classifier)
+
     # Setup training inputs
     train_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": train_data},
         y=train_labels,
         batch_size=batch_size,
         num_epochs=None,
-        shuffle=True)
+        shuffle=True,
+        hooks=hooks)
 
     # Train the classifier
     classifier.train(
@@ -113,6 +119,6 @@ def model_estimator(params, train_data, train_labels, eval_data,
       shuffle=False)
 
     predictions = np.array(
-        list(estimator.predict(input_fn=predict_input_fn))).T
+        list(classifier.predict(input_fn=predict_input_fn))).T
 
     return predictions

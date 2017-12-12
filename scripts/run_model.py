@@ -26,7 +26,7 @@ train_data_dir_path = ('../data/spectrogram/training/sub_ws300')
 train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
 
 eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300')
-eval_labels_file_path = ('..data/spectrogram/validation/REFERENCE.csv')
+eval_labels_file_path = ('../data/spectrogram/validation/REFERENCE.csv')
 
 
 data_format = 'spec'

@@ -145,7 +145,7 @@ def _cnn_fc_layers(features, params, mode):
             if i == 0:
                 weights = _variable_with_weight_decay(
                     name='weights',
-                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,  # Need to find dynamic way to set this
+                    shape=[32000,  # Need to find dynamic way to set this
                            params['fc' + str(i) + '_n_units']],
                     stddev=0.04,
                     wd=params['fc_wd_lambda'])

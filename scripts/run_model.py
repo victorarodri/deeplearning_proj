@@ -83,16 +83,16 @@ params = {'model': cnn,
 #           'fc0_n_units': 50,
 #           'fc1_n_units': 2}
 
-# pred = model_estimator(params=params,
-#                        train_data=train_data,
-#                        train_labels=train_labels,
-#                        eval_data=eval_data,
-#                        eval_labels=eval_labels,
-#                        test_data=eval_data,
-#                        train_eval_iterations=100,
-#                        train_steps=50,
-#                        batch_size=128,
-#                        log_dir_path='../tmp')
+pred = model_estimator(params=params,
+                       train_data=train_data,
+                       train_labels=train_labels,
+                       eval_data=eval_data,
+                       eval_labels=eval_labels,
+                       test_data=eval_data,
+                       train_eval_iterations=100,
+                       train_steps=50,
+                       batch_size=128,
+                       log_dir_path='../tmp')
 
 print(pred)
 print(pred.shape)

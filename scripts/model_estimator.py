@@ -39,7 +39,7 @@ def model_estimator(params, train_data, train_labels, eval_data,
     # Setup session configuration
     sess_config = tf.ConfigProto(
         allow_soft_placement=True,
-        log_device_placement=True,
+        log_device_placement=False,
         intra_op_parallelism_threads=0,
         gpu_options=tf.GPUOptions(force_gpu_compatible=True))
 

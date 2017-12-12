@@ -25,11 +25,13 @@ eval_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
 data_format = 'spec'
 train_data, train_labels = get_data(data_dir_path=train_data_dir_path,
                                     labels_file_path=train_labels_file_path,
-                                    data_format=data_format)
+                                    data_format=data_format,
+                                    sample_size=10)
 
 eval_data, eval_labels = get_data(data_dir_path=eval_data_dir_path,
                                   labels_file_path=eval_labels_file_path,
-                                  data_format=data_format)
+                                  data_format=data_format,
+                                  sample_size=10)
 
 # CNN
 # ======================================================================

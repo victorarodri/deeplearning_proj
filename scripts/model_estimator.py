@@ -4,6 +4,10 @@ import tensorflow as tf
 from model_fn import model_fn
 
 
+# Allow logging to observe model training performance
+tf.logging.set_verbosity(tf.logging.INFO)
+
+
 def model_estimator(params, train_data, train_labels, eval_data,
                     eval_labels, test_data, train_eval_iterations, train_steps,
                     batch_size, log_dir_path):

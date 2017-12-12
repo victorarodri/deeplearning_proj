@@ -47,10 +47,11 @@ def model_estimator(params, train_data, train_labels, eval_data,
         intra_op_parallelism_threads=0,
         gpu_options=tf.GPUOptions(force_gpu_compatible=True))
 
+    valid_every_n_steps = 50
     config = tf.estimator.RunConfig(
         session_config=sess_config,
         model_dir=log_dir_path,
-        save_checkpoints_secs=1)
+        save_checkpoints_steps=valid_every_n_steps-1)
 
     # Create validation monitor
     valid_input_fn = tf.estimator.inputs.numpy_input_fn(
@@ -61,7 +62,7 @@ def model_estimator(params, train_data, train_labels, eval_data,
 
     validation_monitor = tf.contrib.learn.monitors.ValidationMonitor(
         input_fn=valid_input_fn,
-        every_n_steps=50)
+        every_n_steps=valid_every_n_steps)
 
     # Create the classifier wrapping the model
     params['batch_size'] = batch_size

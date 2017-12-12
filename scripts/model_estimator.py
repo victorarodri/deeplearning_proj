@@ -45,41 +45,66 @@ def model_estimator(params, train_data, train_labels, eval_data,
 
     config = tf.estimator.RunConfig(
         session_config=sess_config,
-        model_dir=log_dir_path)
+        model_dir=log_dir_path,
+        save_checkpoints_secs=1)
 
-    # Create the estimator wrapping the model
+    # Create validation monitor
+    valid_input_fn = tf.estimator.inputs.numpy_input_fn(
+        x={"x": eval_data},
+        y=eval_labels,
+        num_epochs=1,
+        shuffle=False)
+
+    validation_monitor = tf.contrib.learn.monitors.ValidationMonitor(
+        input_fn=valid_input_fn,
+        every_n_steps=50)
+
+    # Create the classifier wrapping the model
     params['batch_size'] = batch_size
     params['eval_size'] = eval_data.shape[0]
     params['predict_size'] = test_data.shape[0]
-    estimator = tf.estimator.Estimator(
+    classifier = tf.estimator.Estimator(
         model_fn=model_fn,
         config=config,
         params=params)
 
-    for _ in range(train_eval_iterations):
-        # Setup training inputs
-        train_input_fn = tf.estimator.inputs.numpy_input_fn(
-            x={"x": train_data},
-            y=train_labels,
-            batch_size=batch_size,
-            num_epochs=None,
-            shuffle=True)
+    # Setup training inputs
+    train_input_fn = tf.estimator.inputs.numpy_input_fn(
+        x={"x": train_data},
+        y=train_labels,
+        batch_size=batch_size,
+        num_epochs=None,
+        shuffle=True)
 
-        # Train the estimator
-        estimator.train(
-            input_fn=train_input_fn,
-            steps=train_steps)
+    # Train the classifier
+    classifier.train(
+        input_fn=train_input_fn,
+        steps=train_steps)
 
-        # Setup evaluation inputs
-        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-            x={"x": eval_data},
-            y=eval_labels,
-            num_epochs=1,
-            shuffle=False)
+    # for _ in range(train_eval_iterations):
+    #     # Setup training inputs
+    #     train_input_fn = tf.estimator.inputs.numpy_input_fn(
+    #         x={"x": train_data},
+    #         y=train_labels,
+    #         batch_size=batch_size,
+    #         num_epochs=None,
+    #         shuffle=True)
 
-        # Evaluate the estimator
-        eval_results = estimator.evaluate(input_fn=eval_input_fn)
-        print(eval_results)
+    #     # Train the estimator
+    #     classifier.train(
+    #         input_fn=train_input_fn,
+    #         steps=train_steps)
+
+    #     # Setup evaluation inputs
+    #     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+    #         x={"x": eval_data},
+    #         y=eval_labels,
+    #         num_epochs=1,
+    #         shuffle=False)
+
+    #     # Evaluate the estimator
+    #     eval_results = classifier.evaluate(input_fn=eval_input_fn)
+    #     print(eval_results)
 
     # Generate estimator predictions
     predict_input_fn = tf.estimator.inputs.numpy_input_fn(

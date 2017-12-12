@@ -79,13 +79,13 @@ def model_estimator(params, train_data, train_labels, eval_data,
         y=train_labels,
         batch_size=batch_size,
         num_epochs=None,
-        shuffle=True,
-        hooks=hooks)
+        shuffle=True)
 
     # Train the classifier
     classifier.train(
         input_fn=train_input_fn,
-        steps=train_steps)
+        steps=train_steps,
+        hooks=hooks)
 
     # for _ in range(train_eval_iterations):
     #     # Setup training inputs

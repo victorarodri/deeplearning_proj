@@ -69,7 +69,7 @@ def model_estimator(params, train_data, train_labels, eval_data,
         params=params)
 
     val_mon_list = [validation_monitor]
-    hooks = tf.monitors.replace_monitors_with_hooks(
+    hooks = tf.contrib.learn.python.learn.replace_monitors_with_hooks(
         val_mon_list,
         classifier)
 

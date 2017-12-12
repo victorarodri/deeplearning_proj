@@ -14,7 +14,7 @@ def _variable_on_cpu(name, shape, initializer):
         var - Tensorflow variable.
 
     """
-    with tf.device('/cpu:0'):
+    with tf.device('/gpu:0'):
         var = tf.get_variable(name=name,
                               shape=shape,
                               dtype=tf.float32,

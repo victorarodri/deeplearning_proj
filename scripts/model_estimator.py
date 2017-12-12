@@ -29,20 +29,31 @@ def model_estimator(params, train_data, train_labels, eval_data,
 
     """
 
-    # Delete directory containing events logs and checkpoints if it exists.
+    # Delete directory containing events logs and checkpoints if it exists
     if tf.gfile.Exists(log_dir_path):
         tf.gfile.DeleteRecursively(log_dir_path)
 
-    # Create directory containing events logs and checkpoints.
+    # Create directory containing events logs and checkpoints
     tf.gfile.MakeDirs(log_dir_path)
 
-    # Create the estimator wrapping the model.
+    # Setup session configuration
+    sess_config = tf.ConfigProto(
+        allow_soft_placement=True,
+        log_device_placement=True,
+        intra_op_parallelism_threads=0,
+        gpu_options=tf.GPUOptions(force_gpu_compatible=True))
+
+    config = tf.estimator.RunConfig(
+        session_config=sess_config,
+        model_dir=log_dir_path)
+
+    # Create the estimator wrapping the model
     params['batch_size'] = batch_size
     params['eval_size'] = eval_data.shape[0]
     params['predict_size'] = test_data.shape[0]
     estimator = tf.estimator.Estimator(
         model_fn=model_fn,
-        model_dir=log_dir_path,
+        config=config,
         params=params)
 
     for _ in range(train_eval_iterations):

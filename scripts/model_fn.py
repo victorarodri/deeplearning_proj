@@ -2,7 +2,7 @@
 import tensorflow as tf
 
 
-def model_fn(features, labels, mode, params, config=None):
+def model_fn(features, labels, mode, params, config):
     """Function for training, evaluating and making predictions with model.
     Args:
         features - dict. Features to pass to model.

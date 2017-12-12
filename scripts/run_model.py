@@ -10,17 +10,24 @@ from cnn import cnn
 
 # DATA
 # ======================================================================
-train_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
-                       'spectrogram/training/sub_ws300')
+# train_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
+#                        'spectrogram/training/sub_ws300')
 
-train_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
-                          'spectrogram/training/REFERENCE.csv')
+# train_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
+#                           'spectrogram/training/REFERENCE.csv')
 
-eval_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
-                      'spectrogram/validation/sub_ws300')
+# eval_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
+#                       'spectrogram/validation/sub_ws300')
 
-eval_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
-                         'spectrogram/validation/REFERENCE.csv')
+# eval_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
+#                          'spectrogram/validation/REFERENCE.csv')
+
+train_data_dir_path = ('../data/spectrogram/training/sub_ws300')
+train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
+
+eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300')
+eval_labels_file_path = ('..data/spectrogram/validation/REFERENCE.csv')
+
 
 data_format = 'spec'
 train_data, train_labels = get_data(data_dir_path=train_data_dir_path,

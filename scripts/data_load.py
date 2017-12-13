@@ -54,11 +54,11 @@ def get_data(data_dir_path, labels_file_path, data_format='td',
 
     #     data = np.zeros([sample_size, max_length, max_width])
 
-    if data_dir_path.split('_')[-1] == 'ws300':
+    if data_dir_path.split('_')[-2] == 'ws300':
         data = np.zeros([sample_size, 100, 151])
-    elif data_dir_path.split('_')[-1] == 'ws500':
+    elif data_dir_path.split('_')[-2] == 'ws500':
         data = np.zeros([sample_size, 100, 251])
-    elif data_dir_path.split('_')[-1] == 'ws1000':
+    elif data_dir_path.split('_')[-2] == 'ws1000':
         data = np.zeros([sample_size, 100, 501])
 
     # Load dictionary mapping file name prefix to label

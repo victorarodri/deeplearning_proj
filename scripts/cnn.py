@@ -134,7 +134,7 @@ def _cnn_fc_layers(features, params, mode):
 
     # Define dictionary for tracking FC layer inputs
     fc_layer_inputs = {'fc0': inputs}
-    print('FC inputs size: {}'.format(inputs.shape[-1].value))
+    print('FC inputs size: {}'.format(inputs.shape))
 
     # Fully connected layers
     for i in range(params['fc_num_layers']):

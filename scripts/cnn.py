@@ -132,14 +132,9 @@ def _cnn_fc_layers(features, params, mode):
     if mode == tf.estimator.ModeKeys.TRAIN:
         inputs = tf.reshape(inputs, [params['batch_size'], inputs_flat_shape])
     elif mode == tf.estimator.ModeKeys.EVAL:
-        if params['eval_size'] > 128:
-            inputs = tf.reshape(inputs, [128, inputs_flat_shape])
-        else:
-            inputs = tf.reshape(
-                inputs, [params['eval_size'], inputs_flat_shape])
+        inputs = tf.reshape(inputs, [-1, inputs_flat_shape])
     elif mode == tf.estimator.ModeKeys.PREDICT:
-        inputs = tf.reshape(
-            inputs, [params['predict_size'], inputs_flat_shape])
+        inputs = tf.reshape(inputs, [-1, inputs_flat_shape])
 
     print('FC flattened inputs shape: {}'.format(inputs.shape))
 

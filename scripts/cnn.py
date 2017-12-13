@@ -33,11 +33,10 @@ def cnn(features, params, mode):
         unscaled_logits - tensor. Unscaled output from last FC layer.
 
     """
-    # Input Layer.
-    inputs = tf.transpose(features['x'], perm=[0, 2, 1])
+    # Input Layer
     input_layer = tf.reshape(
-        inputs,
-        [-1, inputs.shape[1].value, inputs.shape[2].value, 1])
+        features["x"],
+        [-1, features['x'].shape[2].value, features['x'].shape[1].value, 1])
 
     cnn_layer_inputs = {'cnn0': input_layer}
 
@@ -145,7 +144,7 @@ def _cnn_fc_layers(features, params, mode):
             if i == 0:
                 weights = _variable_with_weight_decay(
                     name='weights',
-                    shape=[32000,  # Need to find dynamic way to set this
+                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,  # Need to find dynamic way to set this
                            params['fc' + str(i) + '_n_units']],
                     stddev=0.04,
                     wd=params['fc_wd_lambda'])

@@ -44,22 +44,11 @@ def get_data(data_dir_path, labels_file_path, data_format='td',
             max_length = max(max_length, np.load(df).shape[0])
 
         data = np.zeros([sample_size, max_length])
-
-    # elif data_format == 'spec':
-    #     max_width = 0
-    #     for i in range(sample_size):
-    #         df = data_filenames[i]
-    #         max_width = max(max_width, np.load(df).shape[0])
-    #         max_length = max(max_length, np.load(df).shape[1])
-
-    #     data = np.zeros([sample_size, max_length, max_width])
-
-    if data_dir_path.split('_')[-2] == 'ws300':
-        data = np.zeros([sample_size, 100, 151])
-    elif data_dir_path.split('_')[-1] == 'ws500':
-        data = np.zeros([sample_size, 100, 251])
-    elif data_dir_path.split('_')[-1] == 'ws1000':
-        data = np.zeros([sample_size, 100, 501])
+        
+    elif data_format == 'spec':
+        data_example = np.load(data_filenames[0])
+        data = np.zeros([sample_size,
+                         data_example.shape[1], data_example.shape[0]])
 
     # Load dictionary mapping file name prefix to label
     labels_dict = __get_labels_dict(labels_file_path)

@@ -65,6 +65,10 @@ def model_estimator(params, train_data, train_labels, eval_data,
         every_n_steps=valid_every_n_steps)
 
     # Create the classifier wrapping the model
+    print('Train data shape: {}'.format(train_data.shape))
+    print('Eval data shape: {}'.format(eval_data.shape))
+    print('Test data shape: {}'.format(test_data.shape))
+
     params['batch_size'] = batch_size
     params['eval_size'] = eval_data.shape[0]
     params['predict_size'] = test_data.shape[0]

@@ -34,8 +34,10 @@ def cnn(features, params, mode):
 
     """
     # Input Layer
+    print('CNN inputs shape: {}'.format(features['x'].shape))
+
     input_layer = tf.reshape(
-        features["x"],
+        features['x'],
         [-1, features['x'].shape[2].value, features['x'].shape[1].value, 1])
 
     cnn_layer_inputs = {'cnn0': input_layer}
@@ -125,6 +127,11 @@ def _cnn_fc_layers(features, params, mode):
     # Pull inputs from features and flatten
     inputs = features['x']
 
+    # inputs_flat_shape = 0
+    # for i in range(params['cnn_num_layers']):
+
+    print('FC inputs shape: {}'.format(inputs.shape))
+
     if mode == tf.estimator.ModeKeys.TRAIN:
         inputs = tf.reshape(inputs, [params['batch_size'], -1])
     elif mode == tf.estimator.ModeKeys.EVAL:
@@ -132,9 +139,10 @@ def _cnn_fc_layers(features, params, mode):
     elif mode == tf.estimator.ModeKeys.PREDICT:
         inputs = tf.reshape(inputs, [params['predict_size'], -1])
 
+    print('FC flattened inputs shape: {}'.format(inputs.shape))
+
     # Define dictionary for tracking FC layer inputs
     fc_layer_inputs = {'fc0': inputs}
-    print('FC inputs size: {}'.format(inputs.shape))
 
     # Fully connected layers
     for i in range(params['fc_num_layers']):
@@ -144,7 +152,7 @@ def _cnn_fc_layers(features, params, mode):
             if i == 0:
                 weights = _variable_with_weight_decay(
                     name='weights',
-                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,  # Need to find dynamic way to set this
+                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,
                            params['fc' + str(i) + '_n_units']],
                     stddev=0.04,
                     wd=params['fc_wd_lambda'])

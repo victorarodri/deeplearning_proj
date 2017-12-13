@@ -66,8 +66,8 @@ def model_estimator(params, train_data, train_labels, eval_data,
 
     # Create the classifier wrapping the model
     params['batch_size'] = batch_size
-    params['eval_size'] = eval_data.shape[0]
-    params['predict_size'] = test_data.shape[0]
+    params['eval_size'] = eval_data.shape[0].value
+    params['predict_size'] = test_data.shape[0].value
     classifier = tf.estimator.Estimator(
         model_fn=model_fn,
         config=config,

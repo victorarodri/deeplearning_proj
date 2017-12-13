@@ -36,9 +36,11 @@ def cnn(features, params, mode):
     # Input Layer
     print('CNN inputs shape: {}'.format(features['x'].shape))
 
-    input_layer = tf.reshape(
-        features['x'],
-        [-1, features['x'].shape[2].value, features['x'].shape[1].value, 1])
+    # input_layer = tf.reshape(
+    #     features['x'],
+    #     [-1, features['x'].shape[2].value, features['x'].shape[1].value, 1])
+
+    input_layer = tf.transpose(features['x'], perm=[0, 2, 1, 3])
 
     cnn_layer_inputs = {'cnn0': input_layer}
 

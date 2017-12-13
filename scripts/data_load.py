@@ -45,14 +45,21 @@ def get_data(data_dir_path, labels_file_path, data_format='td',
 
         data = np.zeros([sample_size, max_length])
 
-    elif data_format == 'spec':
-        max_width = 0
-        for i in range(sample_size):
-            df = data_filenames[i]
-            max_width = max(max_width, np.load(df).shape[0])
-            max_length = max(max_length, np.load(df).shape[1])
+    # elif data_format == 'spec':
+    #     max_width = 0
+    #     for i in range(sample_size):
+    #         df = data_filenames[i]
+    #         max_width = max(max_width, np.load(df).shape[0])
+    #         max_length = max(max_length, np.load(df).shape[1])
 
-        data = np.zeros([sample_size, max_length, max_width])
+    #     data = np.zeros([sample_size, max_length, max_width])
+
+    if data_dir_path.split('_')[-1] == 'ws300':
+        data = np.zeros([sample_size, 100, 151])
+    elif data_dir_path.split('_')[-1] == 'ws500':
+        data = np.zeros([sample_size, 100, 251])
+    elif data_dir_path.split('_')[-1] == 'ws1000':
+        data = np.zeros([sample_size, 100, 501])
 
     # Load dictionary mapping file name prefix to label
     labels_dict = __get_labels_dict(labels_file_path)
@@ -63,6 +70,9 @@ def get_data(data_dir_path, labels_file_path, data_format='td',
         if data_format == 'td':
             data[i, :] = np.load(df)
         elif data_format == 'spec':
+            # Data are formated Freq x Time.
+            # Tranpose to get Time X Freq which complies with
+            # time_major = False format for RNNs
             data[i, :, :] = np.load(df).T
 
         label_key = df.split('/')[-1].split('.')[0].split('_')[0]

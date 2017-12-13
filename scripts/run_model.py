@@ -22,10 +22,10 @@ from cnn import cnn
 # eval_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
 #                          'spectrogram/validation/REFERENCE.csv')
 
-train_data_dir_path = ('../data/spectrogram/training/sub_ws300')
+train_data_dir_path = ('../data/spectrogram/training/sub_ws300_full')
 train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
 
-eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300')
+eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300_full')
 eval_labels_file_path = ('../data/spectrogram/validation/REFERENCE.csv')
 
 

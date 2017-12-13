@@ -101,7 +101,7 @@ pred = model_estimator(params=params,
                        eval_labels=eval_labels,
                        test_data=eval_data,
                        train_eval_iterations=100,
-                       train_steps=200,
+                       train_steps=5000,
                        batch_size=128,
                        log_dir_path='../tmp')
 

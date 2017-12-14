@@ -35,9 +35,10 @@ def cnn_rnn_hybrid(features, params, mode):
 
     """
     # Input Layer.
+    input_layer = features['x']
     input_layer = tf.reshape(
-        features["x"],
-        [-1, features['x'].shape[2].value, features['x'].shape[1].value, 1])
+        input_layer,
+        [-1, input_layer.shape[1].value, input_layer.shape[2].value, 1])
 
     cnn_layer_inputs = {'cnn0': input_layer}
 

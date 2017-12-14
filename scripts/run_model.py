@@ -10,18 +10,6 @@ from cnn import cnn
 
 # DATA
 # ======================================================================
-# train_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
-#                        'spectrogram/training/sub_ws300')
-
-# train_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
-#                           'spectrogram/training/REFERENCE.csv')
-
-# eval_data_dir_path = ('/Volumes/light/deeplearning_proj/data/'
-#                       'spectrogram/validation/sub_ws300')
-
-# eval_labels_file_path = ('/Volumes/light/deeplearning_proj/data/'
-#                          'spectrogram/validation/REFERENCE.csv')
-
 train_data_dir_path = ('../data/spectrogram/training/sub_ws300_full')
 train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
 
@@ -66,8 +54,8 @@ params = {'model': cnn,
           'pool3_window_strides': [1, 1, 2, 1],
           'pool4_window_strides': [1, 1, 2, 1],
           'fc_num_layers': 3,
-          'fc0_n_units': 120,
-          'fc1_n_units': 60,
+          'fc0_n_units': 4096,
+          'fc1_n_units': 2048,
           'fc2_n_units': 2}
 
 # # CNN-RNN hybrid

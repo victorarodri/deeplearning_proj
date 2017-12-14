@@ -25,15 +25,12 @@ def rnn(features, params, mode):
 
     Returns:
         unscaled_logits - tensor. Unscaled output from last FC layer.
-    """
 
+    """
     # Input Layer
     input_layer = tf.reshape(
         features['x'],
         [-1, features['x'].shape[1].value, features['x'].shape[2].value])
-
-    print('FEATURES - SHAPE[1]: {}'.format(features['x'].shape[1].value))
-    print('FEATURES - SHAPE[2]: {}'.format(features['x'].shape[2].value))
 
     # Multilayer RNN
     with tf.variable_scope(name_or_scope='rnn') as scope:
@@ -171,8 +168,10 @@ def _rnn_fc_layers(features, params, mode):
                 shape=[params['fc' + str(i) + '_n_units']],
                 initializer=tf.constant_initializer(0.1))
 
+            # Get inputs for current layer
             inputs = fc_layer_inputs['fc' + str(i)]
 
+            # Apply weights and biases to layer inputs
             if i == 0:
                 # Pass RNN output from last cell as input to FC0
                 pre_activation = tf.add(
@@ -182,6 +181,7 @@ def _rnn_fc_layers(features, params, mode):
                 pre_activation = tf.add(
                     tf.matmul(inputs, weights), bias)
 
+            # Apply nonliner activation function
             outputs = tf.nn.relu(
                 features=pre_activation,
                 name=scope.name)

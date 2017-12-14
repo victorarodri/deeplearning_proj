@@ -178,12 +178,8 @@ def _cnn_fc_layers(features, params, mode):
             pre_activation = tf.add(tf.matmul(inputs, weights), bias)
 
             # Apply nonliner activation function
-            # outputs = tf.nn.relu(
-            #     features=pre_activation,
-            #     name=scope.name)
-
-            outputs = tf.nn.tanh(
-                x=pre_activation,
+            outputs = tf.nn.relu(
+                features=pre_activation,
                 name=scope.name)
 
             # Apply dropout if mode is TRAIN

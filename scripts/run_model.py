@@ -32,30 +32,30 @@ params = {'model': cnn,
           'cnn_wd_lambda': 0.004,
           'fc_wd_lambda': 0.004,
           'keep_prob': 0.5,
-          'cnn_num_layers': 5,
+          'cnn_num_layers': 4,
           'conv0_kernel_shape': [5, 5, 64],
           'conv1_kernel_shape': [5, 5, 64],
           'conv2_kernel_shape': [5, 5, 64],
           'conv3_kernel_shape': [5, 5, 64],
-          'conv4_kernel_shape': [5, 5, 64],
+          # 'conv4_kernel_shape': [5, 5, 64],
           'conv0_strides': [1, 1, 1, 1],
           'conv1_strides': [1, 1, 1, 1],
           'conv2_strides': [1, 1, 1, 1],
           'conv3_strides': [1, 1, 1, 1],
-          'conv4_strides': [1, 1, 1, 1],
+          # 'conv4_strides': [1, 1, 1, 1],
           'pool0_window_shape': [1, 3, 3, 1],
           'pool1_window_shape': [1, 3, 3, 1],
           'pool2_window_shape': [1, 3, 3, 1],
           'pool3_window_shape': [1, 3, 3, 1],
-          'pool4_window_shape': [1, 3, 3, 1],
+          # 'pool4_window_shape': [1, 3, 3, 1],
           'pool0_window_strides': [1, 1, 2, 1],
           'pool1_window_strides': [1, 1, 2, 1],
           'pool2_window_strides': [1, 1, 2, 1],
           'pool3_window_strides': [1, 1, 2, 1],
-          'pool4_window_strides': [1, 1, 2, 1],
+          # 'pool4_window_strides': [1, 1, 2, 1],
           'fc_num_layers': 3,
-          'fc0_n_units': 200,  # 120
-          'fc1_n_units': 50,  # 60
+          'fc0_n_units': 128,  # 120
+          'fc1_n_units': 64,  # 60
           'fc2_n_units': 2}
 
 # # CNN-RNN hybrid

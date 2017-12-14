@@ -54,8 +54,8 @@ params = {'model': cnn,
           'pool3_window_strides': [1, 1, 2, 1],
           'pool4_window_strides': [1, 1, 2, 1],
           'fc_num_layers': 3,
-          'fc0_n_units': 4096,
-          'fc1_n_units': 2048,
+          'fc0_n_units': 200,  # 120
+          'fc1_n_units': 50,  # 60
           'fc2_n_units': 2}
 
 # # CNN-RNN hybrid

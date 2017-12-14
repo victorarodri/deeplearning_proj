@@ -75,12 +75,13 @@ def cnn_rnn_hybrid(features, params, mode):
 
             pre_activation = tf.nn.bias_add(conv, biases)
 
-            # cnn_layer_outputs = tf.nn.tanh(
-            #     x=pre_activation,
-            #     name=scope.name)
-            cnn_layer_outputs = tf.nn.relu(
-                features=pre_activation,
+            cnn_layer_outputs = tf.nn.tanh(
+                x=pre_activation,
                 name=scope.name)
+
+            # cnn_layer_outputs = tf.nn.relu(
+            #     features=pre_activation,
+            #     name=scope.name)
 
         # Max pooling layer
         pool_layer_outputs = tf.nn.max_pool(

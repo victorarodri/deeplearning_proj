@@ -79,7 +79,7 @@ def cnn_rnn_hybrid(features, params, mode):
             #     x=pre_activation,
             #     name=scope.name)
             cnn_layer_outputs = tf.nn.relu(
-                x=pre_activation,
+                features=pre_activation,
                 name=scope.name)
 
         # Max pooling layer

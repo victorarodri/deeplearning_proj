@@ -75,7 +75,10 @@ def cnn_rnn_hybrid(features, params, mode):
 
             pre_activation = tf.nn.bias_add(conv, biases)
 
-            cnn_layer_outputs = tf.nn.tanh(
+            # cnn_layer_outputs = tf.nn.tanh(
+            #     x=pre_activation,
+            #     name=scope.name)
+            cnn_layer_outputs = tf.nn.relu(
                 x=pre_activation,
                 name=scope.name)
 

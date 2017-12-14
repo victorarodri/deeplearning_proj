@@ -34,7 +34,6 @@ def cnn(features, params, mode):
 
     """
     # Input Layer
-    # input_layer = tf.transpose(features['x'], perm=[0, 2, 1])
     input_layer = features['x']
     input_layer = tf.reshape(
         input_layer,
@@ -75,7 +74,11 @@ def cnn(features, params, mode):
 
             pre_activation = tf.nn.bias_add(conv, biases)
 
-            cnn_layer_outputs = tf.nn.tanh(
+            # cnn_layer_outputs = tf.nn.tanh(
+            #     x=pre_activation,
+            #     name=scope.name)
+
+            cnn_layer_outputs = tf.nn.relu(
                 x=pre_activation,
                 name=scope.name)
 

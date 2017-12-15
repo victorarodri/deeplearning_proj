@@ -1,6 +1,6 @@
 # Imports
 import tensorflow as tf
-from model_var import _variable_on_cpu, _variable_with_weight_decay
+from model_var import _variable_on_gpu, _variable_with_weight_decay
 
 
 def rnn(features, params, mode):
@@ -163,7 +163,7 @@ def _rnn_fc_layers(features, params, mode):
                 wd=params['fc_wd_lambda'])
 
             # Define layer bias
-            bias = _variable_on_cpu(
+            bias = _variable_on_gpu(
                 name='bias',
                 shape=[params['fc' + str(i) + '_n_units']],
                 initializer=tf.constant_initializer(0.1))

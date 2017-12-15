@@ -1,6 +1,6 @@
 # Imports
 import tensorflow as tf
-from model_var import _variable_on_cpu, _variable_with_weight_decay
+from model_var import _variable_on_gpu, _variable_with_weight_decay
 
 
 def cnn(features, params, mode):
@@ -67,7 +67,7 @@ def cnn(features, params, mode):
                 strides=params['conv' + str(i) + '_strides'],
                 padding='SAME')
 
-            biases = _variable_on_cpu(
+            biases = _variable_on_gpu(
                 name='biases',
                 shape=[kernel_shape[3]],
                 initializer=tf.constant_initializer(0.0))
@@ -102,7 +102,8 @@ def cnn(features, params, mode):
         cnn_layer_inputs['cnn' + str(i + 1)] = norm_layer_outputs
 
     # Fully connected layers
-    fc_features = {'x': cnn_layer_inputs['cnn' + str(params['cnn_num_layers'])]}
+    fc_features = {'x':
+                   cnn_layer_inputs['cnn' + str(params['cnn_num_layers'])]}
 
     unscaled_logits = _cnn_fc_layers(fc_features, params, mode)
 
@@ -130,17 +131,16 @@ def _cnn_fc_layers(features, params, mode):
     # Pull inputs from features and flatten
     inputs = features['x']
 
-    print('FC inputs shape: {}'.format(inputs.shape))
-
     inputs_flat_shape = inputs.shape[1] * inputs.shape[2] * inputs.shape[3]
+
     if mode == tf.estimator.ModeKeys.TRAIN:
         inputs = tf.reshape(inputs, [-1, inputs_flat_shape])
+
     elif mode == tf.estimator.ModeKeys.EVAL:
         inputs = tf.reshape(inputs, [-1, inputs_flat_shape])
+
     elif mode == tf.estimator.ModeKeys.PREDICT:
         inputs = tf.reshape(inputs, [-1, inputs_flat_shape])
-
-    print('FC flattened inputs shape: {}'.format(inputs.shape))
 
     # Define dictionary for tracking FC layer inputs
     fc_layer_inputs = {'fc0': inputs}
@@ -150,23 +150,15 @@ def _cnn_fc_layers(features, params, mode):
         with tf.variable_scope(name_or_scope='fc' + str(i)) as scope:
 
             # Define layer weights with weight decay
-            if i == 0:
-                weights = _variable_with_weight_decay(
-                    name='weights',
-                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,
-                           params['fc' + str(i) + '_n_units']],
-                    stddev=0.04,
-                    wd=params['fc_wd_lambda'])
-            else:
-                weights = _variable_with_weight_decay(
-                    name='weights',
-                    shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,
-                           params['fc' + str(i) + '_n_units']],
-                    stddev=0.04,
-                    wd=params['fc_wd_lambda'])
+            weights = _variable_with_weight_decay(
+                name='weights',
+                shape=[fc_layer_inputs['fc' + str(i)].shape[-1].value,
+                       params['fc' + str(i) + '_n_units']],
+                stddev=0.04,
+                wd=params['fc_wd_lambda'])
 
             # Define layer bias
-            bias = _variable_on_cpu(
+            bias = _variable_on_gpu(
                 name='bias',
                 shape=[params['fc' + str(i) + '_n_units']],
                 initializer=tf.constant_initializer(0.1))

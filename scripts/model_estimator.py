@@ -18,11 +18,9 @@ def model_estimator(params, train_data, train_labels, eval_data,
         parameters.
         train_data - np.array. The training data.
         train_labels - np.array. The training labels.
-        train_data - np.array. The evaluation (validation) data.
-        train_labels - np.array. The evaluation (validation) labels.
+        eval_data - np.array. The evaluation (validation) data.
+        eval_labels - np.array. The evaluation (validation) labels.
         test_data - np.array. The test data.
-        train_eval_iterations - int. Number of training/evaluation
-        iterations.
         train_steps - int. Number of training steps per training/evaluation
         iteration.
         batch_size - int. Size of batch for each training step.

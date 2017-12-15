@@ -9,16 +9,12 @@ from cnn import cnn
 from cnn_rnn_hybrid import cnn_rnn_hybrid as crnn
 
 
-def main(model_type):
+def main(model_type,
+         train_data_dir_path, train_labels_file_path,
+         eval_data_dir_path, eval_labels_file_path):
 
     # Get data
     # ======================================================================
-    train_data_dir_path = ('../data/spectrogram/training/sub_ws300')
-    train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
-
-    eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300')
-    eval_labels_file_path = ('../data/spectrogram/validation/REFERENCE.csv')
-
     data_format = 'spec'
     train_data, train_labels = get_data(
         data_dir_path=train_data_dir_path,
@@ -118,8 +114,28 @@ if __name__ == '__main__':
         choices=['cnn', 'rnn', 'crnn'],
         help='Type of model.')
 
+    parser.add_argument(
+        '-tddp', '--train_data_dir_path', type=str, dest='train_data_dir_path',
+        help='Path to training data directory.')
+
+    parser.add_argument(
+        '-tlfp', '--train_labels_file_path', type=str,
+        dest='train_labels_file_path',
+        help='Path to training labels file.')
+
+    parser.add_argument(
+        '-eddp', '--eval_data_dir_path', type=str, dest='eval_data_dir_path',
+        help='Path to evaluation (validation) data directory.')
+
+    parser.add_argument(
+        '-elfp', '--eval_labels_file_path', type=str,
+        dest='eval_labels_file_path',
+        help='Path to training labels file.')
+
     # Get input arguments
     args = parser.parse_args()
 
     # Call main function
-    main(args.model_type)
+    main(args.model_type,
+         args.train_data_dir_path, args.train_labels_file_path,
+         args.eval_data_dir_path, args.eval_labels_file_path)

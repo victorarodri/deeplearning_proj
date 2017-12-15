@@ -89,31 +89,6 @@ def model_estimator(params, train_data, train_labels, eval_data,
         steps=train_steps,
         hooks=hooks)
 
-    # for _ in range(train_eval_iterations):
-    #     # Setup training inputs
-    #     train_input_fn = tf.estimator.inputs.numpy_input_fn(
-    #         x={"x": train_data},
-    #         y=train_labels,
-    #         batch_size=batch_size,
-    #         num_epochs=None,
-    #         shuffle=True)
-
-    #     # Train the estimator
-    #     classifier.train(
-    #         input_fn=train_input_fn,
-    #         steps=train_steps)
-
-    #     # Setup evaluation inputs
-    #     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-    #         x={"x": eval_data},
-    #         y=eval_labels,
-    #         num_epochs=1,
-    #         shuffle=False)
-
-    #     # Evaluate the estimator
-    #     eval_results = classifier.evaluate(input_fn=eval_input_fn)
-    #     print(eval_results)
-
     # Generate estimator predictions
     predict_input_fn = tf.estimator.inputs.numpy_input_fn(
       x={"x": test_data},

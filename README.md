@@ -18,7 +18,7 @@ tensorflow-gpu==1.4.1
 To install these simply clone this repository, change to its root directory, and run the following code in your terminal command line.
 
 ```
-pip install -r requirements.txt 
+pip install -r requirements.txt
 ```
 
 ## Running on sample data
@@ -28,3 +28,5 @@ A small amount of training and validation data (PCG spectrograms) has been inclu
 ```
 python run_model.py -mt cnn -tddp '../data/spectrogram/training/sub_ws300' -tlfp '../data/spectrogram/training/REFERENCE.csv' -eddp '../data/spectrogram/validation/sub_ws300' -elfp '../data/spectrogram/validation/REFERENCE.csv'
 ```
+
+To run the RNN or CRNN replace `-mt cnn` with `-mt rnn` or `-mt crnn` respectively.

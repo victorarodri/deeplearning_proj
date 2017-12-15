@@ -2,7 +2,7 @@
 import tensorflow as tf
 
 
-def _variable_on_cpu(name, shape, initializer):
+def _variable_on_gpu(name, shape, initializer):
     """Helper to create a Variable stored on CPU memory.
 
     Args:
@@ -39,7 +39,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
     initializer = tf.truncated_normal_initializer(stddev=stddev,
                                                   dtype=tf.float32)
 
-    var = _variable_on_cpu(name=name,
+    var = _variable_on_gpu(name=name,
                            shape=shape,
                            initializer=initializer)
 

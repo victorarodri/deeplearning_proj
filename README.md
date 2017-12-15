@@ -1,2 +1,2 @@
-# deeplearning_proj
-Repository containing final project for Deep Learning.
+# Classification of Normal versus Abnormal Heart Sounds 
+This repository contatins the source code for 

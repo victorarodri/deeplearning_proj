@@ -62,9 +62,10 @@ def main(model_type):
                   'rnn_num_layers': 2,
                   'rnn0_n_units': 10,
                   'rnn1_n_units': 10,
-                  'fc_num_layers': 2,
-                  'fc0_n_units': 7,
-                  'fc1_n_units': 2}
+                  'fc_num_layers': 3,
+                  'fc0_n_units': 128,
+                  'fc1_n_units': 64,
+                  'fc2_n_units': 2}
 
     elif(model_type == 'crnn'):
 
@@ -84,11 +85,12 @@ def main(model_type):
                   'pool1_window_strides': [1, 2, 2, 1],
                   'rnn_cell': tf.contrib.rnn.GRUCell,
                   'rnn_num_layers': 2,
-                  'rnn0_n_units': 300,
-                  'rnn1_n_units': 100,
-                  'fc_num_layers': 2,
-                  'fc0_n_units': 50,
-                  'fc1_n_units': 2}
+                  'rnn0_n_units': 10,
+                  'rnn1_n_units': 10,
+                  'fc_num_layers': 3,
+                  'fc0_n_units': 128,
+                  'fc1_n_units': 64,
+                  'fc2_n_units': 2}
 
     # Build, train and evaluate model
     # ======================================================================

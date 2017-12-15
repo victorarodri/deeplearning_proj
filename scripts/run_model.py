@@ -13,10 +13,10 @@ def main(model_type):
 
     # Get data
     # ======================================================================
-    train_data_dir_path = ('../data/spectrogram/training/sub_ws300_full')
+    train_data_dir_path = ('../data/spectrogram/training/sub_ws300')
     train_labels_file_path = ('../data/spectrogram/training/REFERENCE.csv')
 
-    eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300_full')
+    eval_data_dir_path = ('../data/spectrogram/validation/sub_ws300')
     eval_labels_file_path = ('../data/spectrogram/validation/REFERENCE.csv')
 
     data_format = 'spec'
@@ -38,19 +38,15 @@ def main(model_type):
                   'cnn_wd_lambda': 0.004,
                   'fc_wd_lambda': 0.004,
                   'keep_prob': 0.5,
-                  'cnn_num_layers': 3,
+                  'cnn_num_layers': 2,
                   'conv0_kernel_shape': [5, 5, 64],
                   'conv1_kernel_shape': [5, 5, 64],
-                  'conv2_kernel_shape': [5, 5, 64],
                   'conv0_strides': [1, 1, 1, 1],
                   'conv1_strides': [1, 1, 1, 1],
-                  'conv2_strides': [1, 1, 1, 1],
                   'pool0_window_shape': [1, 3, 3, 1],
                   'pool1_window_shape': [1, 3, 3, 1],
-                  'pool2_window_shape': [1, 3, 3, 1],
                   'pool0_window_strides': [1, 1, 2, 1],
                   'pool1_window_strides': [1, 1, 2, 1],
-                  'pool2_window_strides': [1, 1, 2, 1],
                   'fc_num_layers': 3,
                   'fc0_n_units': 128,
                   'fc1_n_units': 64,

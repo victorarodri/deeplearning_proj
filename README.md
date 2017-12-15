@@ -1,2 +1,2 @@
 # Classification of Normal versus Abnormal Heart Sounds 
-This repository contatins the source code for 
+Our goal is to classify heart sound recordings, or phonocardiograms (PCGs) as either normal (i.e. not suggestive of cardiac pathology) or abnormal (i.e. suggetive of possible cardiac pathology). To achieve this goal we train convolutional (CNN), recurrent (RNN) and combined CNN + RNN (CRNN) deep neural networks to function of binary classifier of PCGs. Data for this project was obtained from the [2016 Computing in Cardiology dataset](https://www.physionet.org/challenge/2016/).

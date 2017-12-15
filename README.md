@@ -20,3 +20,11 @@ To install these simply clone this repository, change to its root directory, and
 ```
 pip install -r requirements.txt 
 ```
+
+## Running on sample data
+
+A small amount of training and validation data (PCG spectrograms) has been included in this repository. You can use these data to train models described in `cnn.py`, `rnn.py`, and `cnn_rnn_hybrid.py` (a CRNN) which can be found in the `scripts` directory. Change directories to `scripts` and run the following command to train a CNN.
+
+```
+python run_model.py -mt cnn -tddp '../data/spectrogram/training/sub_ws300' -tlfp '../data/spectrogram/training/REFERENCE.csv' -eddp '../data/spectrogram/validation/sub_ws300' -elfp '../data/spectrogram/validation/REFERENCE.csv'
+```
